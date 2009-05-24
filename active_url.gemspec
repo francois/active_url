@@ -2,11 +2,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{active_url}
-  s.version = "0.1.1"
+  s.version = "0.1.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Matthew Hollingworth"]
-  s.date = %q{2009-05-21}
+  s.date = %q{2009-05-25}
   s.description = %q{ActiveUrl enables the storing of a model in an encrypted URL. It facilitates implementation of secret URLs for user (e.g. feed URLs) that can be accessed without logging in, and URLs for confirming the email address of a new user.}
   s.email = %q{mdholling@gmail.com}
   s.extra_rdoc_files = [
@@ -26,8 +26,11 @@ Gem::Specification.new do |s|
     "lib/active_url/crypto.rb",
     "lib/active_url/errors.rb",
     "lib/active_url/validations.rb",
-    "spec/active_url_spec.rb",
-    "spec/spec_helper.rb"
+    "spec/belongs_to_spec.rb",
+    "spec/crypto_spec.rb",
+    "spec/instance_spec.rb",
+    "spec/spec_helper.rb",
+    "spec/validations_spec.rb"
   ]
   s.homepage = %q{http://github.com/mholling/active_url}
   s.rdoc_options = ["--charset=UTF-8"]
@@ -35,8 +38,11 @@ Gem::Specification.new do |s|
   s.rubygems_version = %q{1.3.1}
   s.summary = %q{A Rails library for generating secret URLs.}
   s.test_files = [
-    "spec/active_url_spec.rb",
-    "spec/spec_helper.rb"
+    "spec/belongs_to_spec.rb",
+    "spec/crypto_spec.rb",
+    "spec/instance_spec.rb",
+    "spec/spec_helper.rb",
+    "spec/validations_spec.rb"
   ]
 
   if s.respond_to? :specification_version then
