@@ -28,7 +28,7 @@ config.gem "mholling-active_url", :lib => "active_url", :source => "http://gems.
 Specify a secret passphrase for the library to perform its encryption. You can set this by adding an initializer (say active_url.rb) in your config/initializers directory. This will just set the secret passphrase for your app (you might not want to check this into your source control):
 
 <pre>
-ActiveUrl.config.secret = "my-app-encryption-secret"
+ActiveUrl::Config.secret = "my-app-encryption-secret"
 </pre>
 
 To generate secret URLs in your Rails application, simply inherit a model from <code>ActiveUrl::Base</code>, in the same way you would normally inherit from <code>ActiveRecord::Base</code>. These objects won't be stored in your database; instead they will be persisted as an encrypted ID and placed in an URL given only to that user (typically by email).

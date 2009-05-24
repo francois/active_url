@@ -23,9 +23,9 @@ module ActiveUrl
     private
  
     def self.start(mode)
-      raise ::ArgumentError.new("Set a secret key using ActiveUrl.config.secret = 'your-secret'") if ActiveUrl.config.secret.blank?
+      raise ::ArgumentError.new("Set a secret key using ActiveUrl::Config.secret = 'your-secret'") if ActiveUrl::Config.secret.blank?
       crypto = OpenSSL::Cipher::Cipher.new('aes-256-ecb').send(mode)
-      crypto.key = Digest::SHA256.hexdigest(ActiveUrl.config.secret)
+      crypto.key = Digest::SHA256.hexdigest(ActiveUrl::Config.secret)
       return crypto
     end
   end
