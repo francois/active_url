@@ -9,11 +9,6 @@ module ActiveUrl
     def self.attribute(*attribute_names)
       options = attribute_names.extract_options!
       attribute_names.map(&:to_sym).each { |attribute_name| add_attribute(attribute_name, options) }
-      # attribute_names.map(&:to_sym).each do |attribute_name|
-      #   attr_accessor attribute_name
-      #   self.attribute_names << attribute_name
-      #   self.accessible_attributes << attribute_name if options[:accessible]
-      # end
     end
     
     def self.attr_accessible(*attribute_names)
@@ -60,7 +55,7 @@ module ActiveUrl
       raise RecordNotFound unless id.is_a?(String) && !id.blank?
       serialized = begin
         Crypto.decrypt(id)
-      rescue OpenSSL::CipherError
+      rescue Crypto::CipherError
         raise RecordNotFound
       end
       type, attributes = YAML.load(serialized)
@@ -93,9 +88,10 @@ module ActiveUrl
     self.accessible_attributes = Set.new
     
     def self.add_attribute(attribute_name, options)
-      attr_accessor attribute_name
       self.attribute_names << attribute_name
       self.accessible_attributes << attribute_name if options[:accessible]
+      public
+      attr_accessor attribute_name
     end
   end
   

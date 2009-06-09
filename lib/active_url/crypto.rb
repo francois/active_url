@@ -4,6 +4,8 @@ require 'base64'
 
 module ActiveUrl
   module Crypto
+    CipherError = OpenSSL::Cipher.const_defined?(:CipherError) ? OpenSSL::Cipher::CipherError : OpenSSL::CipherError
+    
     PADDING = { 2 => "==", 3 => "=" }
  
     def self.encrypt(clear)

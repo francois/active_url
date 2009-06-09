@@ -7,7 +7,7 @@ describe ActiveUrl do
   
   context "instance with validations" do
     before(:all) do
-      class Registration < ActiveUrl::Base  
+      class ::Registration < ActiveUrl::Base  
         attribute :name, :email, :password, :age, :accessible => true
         validates_presence_of :name
         validates_format_of :email, :with => /^[\w\.=-]+@[\w\.-]+\.[a-zA-Z]{2,4}$/ix
@@ -93,7 +93,7 @@ describe ActiveUrl do
         end
         
         it "should execute any after_save callbacks" do
-          @registration.instance_variables.should include("@sent")
+          @registration.instance_variables.map(&:to_s).should include("@sent")
         end
         
         context "and re-found by its class" do

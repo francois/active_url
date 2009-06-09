@@ -15,7 +15,7 @@ describe ActiveUrl do
         end
       end
     
-      class Secret < ActiveUrl::Base
+      class ::Secret < ActiveUrl::Base
         belongs_to :user
       end
     end

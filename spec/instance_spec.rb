@@ -39,7 +39,7 @@ describe ActiveUrl do
   
   context "derived" do
     before(:all) do  
-      class DerivedClass < ActiveUrl::Base
+      class ::DerivedClass < ActiveUrl::Base
         attribute :foo, :bar
         attribute :baz, :accessible => true
         attr_accessible :bar
@@ -50,6 +50,16 @@ describe ActiveUrl do
     end
     
     context "instance" do
+      it "should have individually accessible attribute readers" do
+        @url = DerivedClass.new
+        [ :foo, :bar, :baz ].each { |reader| @url.public_methods.map(&:to_sym).should include(reader) }
+      end
+
+      it "should have individually accessible attribute setters" do
+        @url = DerivedClass.new
+        [ :foo=, :bar=, :baz= ].each { |setter| @url.public_methods.map(&:to_sym).should include(setter) }
+      end
+      
       it "should not mass-assign attributes by default" do
         @url = DerivedClass.new(:foo => "foo")
         @url.foo.should be_nil
@@ -89,7 +99,7 @@ describe ActiveUrl do
       
       context "equality" do
         before(:all) do
-          class OtherClass < DerivedClass
+          class ::OtherClass < DerivedClass
           end
         end
         
