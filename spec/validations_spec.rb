@@ -13,12 +13,11 @@ describe ActiveUrl do
         validates_format_of :email, :with => /^[\w\.=-]+@[\w\.-]+\.[a-zA-Z]{2,4}$/ix
         validates_length_of :password, :minimum => 8
         validates_numericality_of :age
-        after_save :send_registration_email
-      
-        def send_registration_email
-          @sent = true
-        end
       end
+    end
+    
+    after(:all) do
+      Object.send(:remove_const, "Registration")
     end
     
     context "when invalid" do
@@ -63,10 +62,6 @@ describe ActiveUrl do
         it "should validate numericality of an attribute" do
           @registration.errors[:age].should_not be_nil
         end
-        
-        it "should not execute any after_save callbacks" do
-          @registration.instance_variables.should_not include("@sent")
-        end
       end
     end
     
@@ -90,10 +85,6 @@ describe ActiveUrl do
         
         it "should have a param equal to its id" do
           @registration.id.should == @registration.to_param
-        end
-        
-        it "should execute any after_save callbacks" do
-          @registration.instance_variables.map(&:to_s).should include("@sent")
         end
         
         context "and re-found by its class" do

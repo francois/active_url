@@ -20,6 +20,10 @@ describe ActiveUrl do
       end
     end
     
+    after(:all) do
+      Object.send(:remove_const, "Secret")
+    end
+    
     before(:each) do
       @url = Secret.new
       @user = User.new

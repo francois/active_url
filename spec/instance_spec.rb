@@ -49,6 +49,10 @@ describe ActiveUrl do
       end
     end
     
+    after(:all) do
+      Object.send(:remove_const, "DerivedClass")
+    end
+    
     context "instance" do
       it "should have individually accessible attribute readers" do
         @url = DerivedClass.new
@@ -101,6 +105,10 @@ describe ActiveUrl do
         before(:all) do
           class ::OtherClass < DerivedClass
           end
+        end
+        
+        after(:all) do
+          Object.send(:remove_const, "OtherClass")
         end
         
         it "should be based on class and attributes only" do
