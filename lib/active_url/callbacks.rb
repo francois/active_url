@@ -2,7 +2,7 @@ module ActiveUrl
   module Callbacks
     def save_with_callbacks
       returning(save_without_callbacks) do |result|
-        run_callbacks(:after_save) unless result.blank?
+        run_callbacks(:after_save) if result
       end
     end
     
