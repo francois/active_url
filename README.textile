@@ -15,14 +15,14 @@ h2. Installation & Usage
 First, install the gem:
 
 <pre>
-gem sources -a http://gems.github.com
-sudo gem install mholling-active_url
+gem sources -a http://gemcutter.org
+sudo gem install active_url
 </pre>
 
 In your Rails app, make sure to specify the gem dependency in environment.rb:
 
 <pre>
-config.gem "mholling-active_url", :lib => "active_url", :source => "http://gems.github.com"
+config.gem "active_url", :source => "http://gemcutter.org"
 </pre>
 
 Specify a secret passphrase for the library to perform its encryption. You can set this by adding an initializer (say active_url.rb) in your config/initializers directory. This will just set the secret passphrase for your app (you might not want to check this into your source control):
