@@ -97,6 +97,7 @@ module ActiveUrl
   
   Base.class_eval do
     extend BelongsTo
+    extend Serialize
     include Validations
     include Callbacks
   end
